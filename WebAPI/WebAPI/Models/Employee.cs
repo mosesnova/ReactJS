@@ -14,5 +14,14 @@ namespace WebAPI.Models
         public string DateOfJoining { get; set; }
         public string PhotoFileName { get; set; }
 
+        public Employee(int EmployeeId, string EmployeeName, string Department, string DateOfJoining, string PhotoFileName)
+        {
+            this.EmployeeId = EmployeeId;
+            this.EmployeeName = EmployeeName;
+            this.Department = Department;
+            this.DateOfJoining = DateOfJoining;
+            this.PhotoFileName = PhotoFileName;
+        }
+
     }
 }

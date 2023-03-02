@@ -26,32 +26,39 @@ namespace WebAPI.Controllers
             _env = env;
         }
 
+       
         [HttpGet]
         public JsonResult Get()
         {
-            string query = @"
-                    select EmployeeId, EmployeeName, Department,
-                    convert(varchar(10),DateOfJoining,120) as DateOfJoining
-                    ,PhotoFileName
-                    from dbo.Employee
-                    ";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+            
+            List<Employee> employees = new List<Employee>();
+            employees.Add(new Employee(1,"PALI_e1", "Parvez Ali", "FOOTBALL", "1"));
+            employees.Add(new Employee(2,"AALI_e2", "Ashik Ali", "FOOTBALL", "1"));
+            employees.Add(new Employee(3,"AALI_e3", "Aftab Ali", "CHESS", "2"));
+            employees.Add(new Employee(4,"AALI_e4", "Arif Ali", "CRICKET", "3"));
+            //string query = @"
+            //        select EmployeeId, EmployeeName, Department,
+            //        convert(varchar(10),DateOfJoining,120) as DateOfJoining
+            //        ,PhotoFileName
+            //        from dbo.Employee
+            //        ";
+            //DataTable table = new DataTable();
+            //string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            //SqlDataReader myReader;
+            //using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            //{
+            //    myCon.Open();
+            //    using (SqlCommand myCommand = new SqlCommand(query, myCon))
+            //    {
+            //        myReader = myCommand.ExecuteReader();
+            //        table.Load(myReader); ;
 
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
+            //        myReader.Close();
+            //        myCon.Close();
+            //    }
+            //}
 
-            return new JsonResult(table);
+            return new JsonResult(employees);
         }
 
 

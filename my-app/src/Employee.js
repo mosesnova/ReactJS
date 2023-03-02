@@ -13,7 +13,7 @@ export class Employee extends Component{
     }
 
     refreshList(){
-        fetch(process.env.REACT_APP_API+'employee')
+        fetch('http://localhost:53535/api/'+'employee')
         .then(response=>response.json())
         .then(data=>{
             this.setState({emps:data});
